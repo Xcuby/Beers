@@ -42,12 +42,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.CelluleJava> {
     // Provide a suitable constructor (depends on the kind of dataset)
     public MyAdapter(List<Beer> listValues, Context c) {
         this.listValues = listValues;
+        this.cxt = c;
     }
 
     // Create new views (invoked by the layout manager)
     @Override
-    public CelluleJava onCreateViewHolder(ViewGroup parent,
-                                          int viewType) {
+    public MyAdapter.CelluleJava onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View v = inflater.inflate(R.layout.row_layout, parent, false);
@@ -66,18 +66,18 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.CelluleJava> {
         final String tagline = currentBeer.getTagline();
         final String description = currentBeer.getDescription();
         final String image_url = currentBeer.getImage_url();
-        Glide.with(cxt).load(image_url).into(holder.image);
+        holder.txtHeader.setText(name);
+        holder.txtFooter.setText(tagline);
+        Glide.with(cxt).asBitmap().load(image_url).into(holder.image);
         holder.txtHeader.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(cxt, BeerActivity.class);
-                intent.putExtra("Beernom", name);
-                intent.putExtra("Beertagline", tagline);
-                intent.putExtra("Beerdescription", description);
-                intent.putExtra("Beerimage_url", image_url);
-                holder.txtHeader.setText(name);
-                holder.txtFooter.setText(tagline);
-                Glide.with(cxt).load(image_url).into(holder.image);
+                intent.putExtra("nom", name);
+                intent.putExtra("tagline", tagline);
+                intent.putExtra("description", description);
+                intent.putExtra("image_url", image_url);
+                cxt.startActivity(intent);
             }
         });
     }

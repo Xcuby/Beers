@@ -10,7 +10,7 @@
 
 
     <ImageView
-        android:id="@+id/Bimage_url"
+        android:id="@+id/Image_urlbeer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -21,7 +21,7 @@
         android:padding="30dp" />
 
     <TextView
-        android:id="@+id/Bname"
+        android:id="@+id/Nombeer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:baselineAligned="false"
@@ -33,7 +33,7 @@
         android:padding="10dp" />
 
     <TextView
-        android:id="@+id/Btagline"
+        android:id="@+id/Sloganbeer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:baselineAligned="false"
@@ -45,7 +45,7 @@
         android:padding="10dp"/>
 
     <TextView
-        android:id="@+id/Bdescription"
+        android:id="@+id/Descriptionbeer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:baselineAligned="false"

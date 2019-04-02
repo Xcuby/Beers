@@ -21,21 +21,24 @@ public class BeerActivity extends Activity {
     }
 
     private void getIncomingIntent() {
-        String BeerName = getIntent().getStringExtra("Nombeer");
-        String BeerTagline = getIntent().getStringExtra("Sloganbeer");
-        String BeerDescription = getIntent().getStringExtra("Descriptionbeer");
-        String BeerImage_url = getIntent().getStringExtra("Image_urlbeer");
-        setBeer(BeerName, BeerTagline, BeerDescription, BeerImage_url);
+        if(getIntent().hasExtra("Nombeer") && getIntent().hasExtra("Sloganbeer") && getIntent().hasExtra("Descriptionbeer") && getIntent().hasExtra("Image_urlbeer")) {
+
+            String BeerName = getIntent().getStringExtra("Nom");
+            String BeerTagline = getIntent().getStringExtra("Slogan");
+            String BeerDescription = getIntent().getStringExtra("Description");
+            String BeerImage_url = getIntent().getStringExtra("urlbeer");
+            setBeer(BeerName, BeerTagline, BeerDescription, BeerImage_url);
+        }
     }
 
     private void setBeer(String Name, String Tagline, String Description, String Image_url){
-        TextView name = findViewById(R.id.Bname);
+        TextView name = findViewById(R.id.Nombeer);
         name.setText("Nom de la bière : " + Name);
-        TextView tagline = findViewById(R.id.Btagline);
+        TextView tagline = findViewById(R.id.Sloganbeer);
         tagline.setText("Slogan : " + Tagline);
-        TextView description = findViewById(R.id.Bdescription);
+        TextView description = findViewById(R.id.Descriptionbeer);
         description.setText("Description : " + Description);
-        ImageView image_url = findViewById(R.id.Bimage_url);
-        Glide.with(this).load(Image_url).into(image_url);
+        ImageView image_url = findViewById(R.id.Image_urlbeer);
+        Glide.with(this).asBitmap().load(Image_url).into(image_url);
     }
 }

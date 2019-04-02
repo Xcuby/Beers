@@ -27,11 +27,6 @@ public class MainController {
 
     public void onStart(){
 
-        //Pour ceux qui veulent aller plus loin
-        //Singleton
-        //Pour ceux qui veulent aller encore plus loin
-        // Injection de dépendances
-
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();

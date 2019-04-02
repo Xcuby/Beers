@@ -1,7 +1,10 @@
 package charles.maziarski.beers;
 
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArraySet;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +13,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.CelluleJava> {
     private List<Beer> listValues;
+    private Context cxt;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -33,18 +39,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.CelluleJava> {
         }
     }
 
-    public void add(int position, Beer item) {
-        listValues.add(position, item);
-        notifyItemInserted(position);
-    }
-
-    public void remove(int position) {
-        listValues.remove(position);
-        notifyItemRemoved(position);
-    }
-
     // Provide a suitable constructor (depends on the kind of dataset)
-    public MyAdapter(List<Beer> listValues) {
+    public MyAdapter(List<Beer> listValues, Context c) {
         this.listValues = listValues;
     }
 
@@ -62,20 +58,28 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.CelluleJava> {
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(CelluleJava holder, final int position) {
+    public void onBindViewHolder(final CelluleJava holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        Beer currentPokemon = listValues.get(position);
-        final String name = currentPokemon.getName();
-        holder.txtHeader.setText(name);
+        Beer currentBeer = listValues.get(position);
+        final String name = currentBeer.getName();
+        final String tagline = currentBeer.getTagline();
+        final String description = currentBeer.getDescription();
+        final String image_url = currentBeer.getImage_url();
+        Glide.with(cxt).load(image_url).into(holder.image);
         holder.txtHeader.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                remove(position);
+                Intent intent = new Intent(cxt, BeerActivity.class);
+                intent.putExtra("Beernom", name);
+                intent.putExtra("Beertagline", tagline);
+                intent.putExtra("Beerdescription", description);
+                intent.putExtra("Beerimage_url", image_url);
+                holder.txtHeader.setText(name);
+                holder.txtFooter.setText(tagline);
+                Glide.with(cxt).load(image_url).into(holder.image);
             }
         });
-
-        holder.txtFooter.setText("Footer: " + name);
     }
 
     // Return the size of your dataset (invoked by the layout manager)

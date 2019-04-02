@@ -23,10 +23,10 @@ public class BeerActivity extends Activity {
     private void getIncomingIntent() {
         if(getIntent().hasExtra("Nombeer") && getIntent().hasExtra("Sloganbeer") && getIntent().hasExtra("Descriptionbeer") && getIntent().hasExtra("Image_urlbeer")) {
 
-            String BeerName = getIntent().getStringExtra("Nom");
-            String BeerTagline = getIntent().getStringExtra("Slogan");
-            String BeerDescription = getIntent().getStringExtra("Description");
-            String BeerImage_url = getIntent().getStringExtra("urlbeer");
+            String BeerName = getIntent().getStringExtra("Nombeer");
+            String BeerTagline = getIntent().getStringExtra("Sloganbeer");
+            String BeerDescription = getIntent().getStringExtra("Descriptionbeer");
+            String BeerImage_url = getIntent().getStringExtra("Image_urlbeer");
             setBeer(BeerName, BeerTagline, BeerDescription, BeerImage_url);
         }
     }

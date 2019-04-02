@@ -17,8 +17,13 @@
         android:layout_alignParentBottom="true"
         android:contentDescription="TODO"
         android:src="@mipmap/ic_launcher"
+        android:adjustViewBounds="true"
+        android:maxWidth="200dp"
+        android:maxHeight="200dp"
+        android:scaleType="fitCenter"
         android:textAlignment="center"
-        android:padding="30dp" />
+        android:padding="30dp"
+        />
 
     <TextView
         android:id="@+id/Nombeer"

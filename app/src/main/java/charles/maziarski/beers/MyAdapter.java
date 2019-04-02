@@ -73,10 +73,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.CelluleJava> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(cxt, BeerActivity.class);
-                intent.putExtra("nom", name);
-                intent.putExtra("tagline", tagline);
-                intent.putExtra("description", description);
-                intent.putExtra("image_url", image_url);
+                intent.putExtra("Nombeer", name);
+                intent.putExtra("Sloganbeer", tagline);
+                intent.putExtra("Descriptionbeer", description);
+                intent.putExtra("Image_urlbeer", image_url);
                 cxt.startActivity(intent);
             }
         });
